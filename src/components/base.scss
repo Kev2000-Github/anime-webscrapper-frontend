@@ -1,0 +1,18 @@
+//@import url('https://fonts.googleapis.com/css2?family=Share&display=swap');
+$mainFontColor: #fff; 
+$mainFont: "Share", sans-serif;
+
+p, h1, h2, h3, a, li{
+    color: $mainFontColor;
+    font-family: $mainFont;
+    font-weight: lighter;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}

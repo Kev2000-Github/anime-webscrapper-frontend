@@ -1,0 +1,121 @@
+@use '../base.scss';
+$sideMenuBG: #252935;
+$pressedMenuButton: #1D2029;
+$sortBG: #1D2029;
+$grey: #6E6E6E;
+$white: #FFFFFF;
+$blue: #77b5fe;
+
+.sideMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18rem;
+    height: 100vh;
+    background: $sideMenuBG;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 9rem 9rem ;
+    box-sizing: none;
+    .sideMenuItem{
+        margin: 0;
+        padding: 0;
+    }
+    .button{
+        border-bottom: 2px solid black;
+        cursor: pointer;
+        &.active{
+            pointer-events: none;
+        }
+        h1,h2{
+            pointer-events: none;
+        }
+        &:hover{
+            background: $pressedMenuButton;
+        }
+        &.active{
+            background: $pressedMenuButton;
+        }
+    }
+    .sort{
+        margin-top: 3rem;
+        .sortContainer{
+            border: 1px solid base.$mainFontColor;
+            width: fit-content;
+            padding: .5rem 4rem;
+            margin: auto;
+            position: relative;
+            background: $sortBG;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 2rem;
+                height: 1rem;
+                border-right: 3px solid base.$mainFontColor;
+                border-top: 3px solid base.$mainFontColor;
+                top: -1%;
+                right: -1%;
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                width: 2rem;
+                height: 1rem;
+                border-left: 3px solid base.$mainFontColor;
+                border-bottom: 3px solid base.$mainFontColor;
+                left: -1%;
+                bottom: -1%;
+            }
+            h2{
+                line-height: .5rem;
+                &:last-child{
+                    font-size: 1.6rem;
+                }
+            }
+            .switch{
+                position: relative;
+                display: inline-block;
+                width: 4rem;
+                height: 2rem;
+                input{
+                    width: 0;
+                    height: 0;
+                    &:checked{
+                        & + .slider{
+                            background: $blue;
+                        }
+                        & + .slider::before{
+                            transform: translateX(1.8rem);
+                        }
+                    }
+                }
+                .slider{
+                    cursor: pointer;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: $grey;
+                    transition: .4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+                    &::before{
+                        position: absolute;
+                        content: "";
+                        height: 1.8rem;
+                        width: 1.8rem;
+                        left: .2rem;
+                        top: .1rem;
+                        background: $white;
+                        transition: .4s;
+                    }
+                    &.round{
+                        border-radius: 34px;
+                        &::before{
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

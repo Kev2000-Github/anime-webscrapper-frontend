@@ -1,0 +1,102 @@
+@use '../base.scss';
+$mainBodyBG: #1D2230;
+$sepia: rgba(88, 88, 63, 0.699);
+.mainBody{
+    margin-left: 18rem;
+    background: rgba(29, 34, 48, 0.9);
+    width: fit-content;
+    min-height: 100vh;
+    .animesInYear{
+        padding-top: 2rem;
+        h2{
+            margin-top: 0;
+            width: fit-content;
+            font-size: 2.5rem;
+            padding: 0 2rem .5rem 3rem;
+            border-bottom: 1.5px solid base.$mainFontColor
+        }
+        .animesContainer{
+            padding: 0 1rem 2rem 1rem;
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            grid-gap: 1rem 1rem;
+            text-align: center;
+            .animeCard{
+                position: relative;
+                &::after{
+                    content: "Ver";
+                    position: absolute;
+                    top: 30%;
+                    transform: translate(-50%, 100%) scale(1.05);
+                    left: 50%;
+                    border: 1px solid base.$mainFontColor;
+                    width: fit-content;
+                    padding: 1px 1rem;
+                    opacity: 0;
+                    color: base.$mainFontColor;
+                    font-family: base.$mainFont;
+                    background:$sepia;
+                    font-size: 1.5rem;
+                    transition: .4s;
+                }
+                &:hover{
+                    &::after{
+                        opacity: 1;
+                        transform: translate(-50%, 50%);
+                    }
+                    div{
+                        img{
+                            filter: sepia(80%);
+                            transform: scale(1.1);   
+                        }
+                        &::after, &::before{
+                            transform: scale(1);
+                        }  
+                    }
+                }
+                div{
+                    width: 10rem;
+                    height: auto;
+                    margin: auto;
+                    overflow: hidden;
+                    position: relative;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        top: 0.4rem;
+                        left: 1.5rem;
+                        width: 7rem;
+                        height: 13rem;
+                        transform-origin: top;
+                        transform: scaleY(0);
+                        transition: .3s;
+                        border-left: .5px solid base.$mainFontColor;
+                        border-right: .5px solid base.$mainFontColor;
+                    }
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        top: 1.2rem;
+                        left: 0.5rem;
+                        width: 9rem;
+                        height: 11rem;
+                        z-index: 1;
+                        transform-origin: 0;
+                        transform: scaleX(0);
+                        transition: .3s;
+                        border-top: .5px solid base.$mainFontColor;
+                        border-bottom: .5px solid base.$mainFontColor;
+                    }
+                    img{
+                        width: 100%;
+                        height: auto;
+                        transition: .4s;   
+                    }
+                }
+            }
+            h3{
+                margin-top: .3rem;
+            }
+        }
+    }
+}
