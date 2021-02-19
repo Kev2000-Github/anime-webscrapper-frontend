@@ -3,6 +3,7 @@ import axios from 'axios';
 const { useState, useEffect } = React;
 import { SideMenu } from './sideMenu/sideMenu';
 import { Main } from './main/main';
+import { BurgerButton } from './burgerButton/burger';
 import utils from '../utils/constants';
 
 let params = ["exclude=Chinese_Animation&", "sort=false&"];
@@ -13,6 +14,7 @@ export const App: React.FunctionComponent = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [sortByPopularity, setSortByPopularity] = useState(false);
     const [nextPage, setNextPage] = useState(utils.initialPage);
+    const [openMenu, setOpenMenu] = useState(false);
     const fetchAnimes = async (reset: boolean = false) => {
         if (reset) {
             const { data } = await axios.get(utils.URL + "?" + urlParam + utils.initialPage);
@@ -46,7 +48,7 @@ export const App: React.FunctionComponent = () => {
         setUrlParam(params.join(""));
     };
     const changeSort = (popularity) => setSortByPopularity(popularity);
-
+    const openBurger = (checked) => setOpenMenu(checked);
     useEffect(() => {
         if (!isLoading) return () => { };
         fetchAnimes();
@@ -57,11 +59,15 @@ export const App: React.FunctionComponent = () => {
     useEffect(() => { sortByPopularity ? changeUrlParam("popularity") : changeUrlParam("date") }, [sortByPopularity]);
     return (
         <>
+            <BurgerButton openBurger={openBurger} openMenu={openMenu} />
             <SideMenu
                 changeUrlParam={changeUrlParam}
                 sortByPopularity={changeSort}
+                openMenu={openMenu}
             />
             <Main
+                openBurger={openBurger}
+                openMenu={openMenu}
                 animeList={animeList}
                 isLoading={isLoading}
                 updateLoading={updateLoading}

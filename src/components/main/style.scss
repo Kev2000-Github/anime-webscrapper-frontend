@@ -3,10 +3,30 @@ $mainBodyBG: #1D2230;
 $sepia: rgba(88, 88, 63, 0.699);
 .mainBody{
     margin-left: 18rem;
-    background: rgba(29, 34, 48, 0.9);
-    width: fit-content;
+    width: 1fr;
     min-height: 100vh;
+    &.open{
+        &::before{
+            pointer-events: initial;
+            opacity: .7;
+        }
+    }
+    &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        transition: .4s;
+    }
     .animesInYear{
+        max-width: 1000px;
+        margin: auto;
         padding-top: 2rem;
         h2{
             margin-top: 0;
@@ -97,6 +117,35 @@ $sepia: rgba(88, 88, 63, 0.699);
             h3{
                 margin-top: .3rem;
             }
+        }
+    }
+}
+
+@media screen and (max-width: base.$breakpoint2){
+    .animesContainer{
+        grid-template-columns: repeat(4,1fr) !important;
+    }
+}
+
+@media screen and (max-width: base.$breakpoint3){
+    .mainBody{
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: base.$breakpoint4){
+    .animesContainer{
+        grid-template-columns: repeat(3,1fr) !important;
+    }
+}
+
+@media screen and (max-width: base.$breakpoint5){
+    .animesInYear{
+        h2{
+            font-size: 1.8rem !important;
+        }
+        .animesContainer{
+            grid-template-columns: repeat(2,1fr) !important;
         }
     }
 }

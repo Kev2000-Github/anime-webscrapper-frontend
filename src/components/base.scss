@@ -1,6 +1,12 @@
 //@import url('https://fonts.googleapis.com/css2?family=Share&display=swap');
 $mainFontColor: #fff; 
 $mainFont: "Share", sans-serif;
+//BREAKPOINTS
+$breakpoint1: 1300px;
+$breakpoint2: 1100px;
+$breakpoint3: 900px;
+$breakpoint4: 600px;
+$breakpoint5: 450px;
 
 p, h1, h2, h3, a, li{
     color: $mainFontColor;
@@ -15,4 +21,18 @@ a{
 body{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    background: rgba(29, 34, 48, 0.9);
+}
+
+@media screen and (min-width: $breakpoint1){
+    html{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: $breakpoint1){
+    html{
+        font-size: 16px;
+    }
 }

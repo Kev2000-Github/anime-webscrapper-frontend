@@ -17,9 +17,10 @@ const sideBtn = [{
 interface sideMenuProps {
     changeUrlParam: Function,
     sortByPopularity: Function,
+    openMenu: boolean
 }
 
-export const SideMenu: React.FC<sideMenuProps> = ({ changeUrlParam, sortByPopularity }) => {
+export const SideMenu: React.FC<sideMenuProps> = ({ changeUrlParam, sortByPopularity, openMenu }) => {
     const [animeType, setAnimeType] = useState(sideBtn[0].title);
     const pressButton = e => setAnimeType(e.target.classList[0]);
     const changeSort = e => sortByPopularity(e.target.checked);
@@ -27,7 +28,7 @@ export const SideMenu: React.FC<sideMenuProps> = ({ changeUrlParam, sortByPopula
         changeUrlParam(animeType);
     }, [animeType]);
     return (
-        <div className="sideMenu">
+        <div className={`sideMenu ${openMenu ? "open" : ""}`}>
             {sideBtn.map(btnData => (
                 <div key={btnData.id} onClick={pressButton} className={`${btnData.title} sideMenuItem button ${animeType == btnData.title ? "active" : ""}`} id={btnData.id}>
                     <h1>{btnData.asianChar}</h1>

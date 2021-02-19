@@ -11,12 +11,14 @@ $blue: #77b5fe;
     top: 0;
     left: 0;
     width: 18rem;
-    height: 100vh;
+    height: 150vh;
+    z-index: 2;
     background: $sideMenuBG;
     text-align: center;
     display: grid;
     grid-template-rows: 9rem 9rem ;
     box-sizing: none;
+    transition: .4s;
     .sideMenuItem{
         margin: 0;
         padding: 0;
@@ -116,6 +118,16 @@ $blue: #77b5fe;
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: base.$breakpoint3){
+    .sideMenu{
+        left: initial;
+        right: -20rem;
+        &.open{
+            right: 0rem;
         }
     }
 }

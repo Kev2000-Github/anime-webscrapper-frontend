@@ -8,12 +8,18 @@ interface mainProps {
     isLoading: boolean,
     updateLoading: Function,
     lastPage: boolean,
-    sortByPopularity: boolean
+    sortByPopularity: boolean,
+    openMenu: boolean,
+    openBurger: Function
 };
 
-export const Main: React.FC<mainProps> = ({ animeList, isLoading, lastPage, updateLoading, sortByPopularity } = { animeList: [], isLoading: false, lastPage: false, sortByPopularity: false, updateLoading: () => { } }) => {
+export const Main: React.FC<mainProps> = ({ animeList, isLoading, lastPage, updateLoading, sortByPopularity, openMenu, openBurger } = { animeList: [], isLoading: false, lastPage: false, sortByPopularity: false, openMenu: false, updateLoading: () => { }, openBurger: () => { } }) => {
     const [animes, setAnimes] = useState([]);
     const observer = useRef(null);
+    const closeMenu = ({ target }) => {
+        if (target.classList.contains("open")) return openBurger(false);
+        return;
+    }
     const lastItem = useCallback(node => {
         if (isLoading) return;
         if (observer.current) observer.current.disconnect();
@@ -39,7 +45,10 @@ export const Main: React.FC<mainProps> = ({ animeList, isLoading, lastPage, upda
     }, [animeList]);
 
     return (
-        <div className="mainBody">
+        <div
+            className={`mainBody ${openMenu ? "open" : ""}`}
+            onClick={closeMenu}
+        >
             {sortByPopularity ?
                 <div className="animesInYear">
                     <h2>Most popular animes</h2>
