@@ -3,3 +3,5 @@ A frontend page to fetch and visualize the data extracted and stored in anime-we
 filtered by:
 japanese or chinese anime
 popularity or date of release
+install dependencies
+`npm install`
